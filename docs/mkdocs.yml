@@ -1,0 +1,61 @@
+site_name: Loot Price documentation
+repo_url: https://github.com/CODEbugging3000/lootprice
+
+theme: 
+  name: material
+  
+  palette:
+    
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      primary: green
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+    - navigation.instant
+
+  logo: assets/lootpriceicon.png
+  
+  favicon: assets/favicon.ico
+
+nav:
+  - Home: index.md
+  - API: api.md
+  - DataBase: database.md
+  - Scraping: scraping.md
+  - Deploy: deploy.md
+  - Contributing: contributing.md
+
+footers:
+  - text: "© 2023 CODEbugging3000"
+    link: https://github.com/CODEbugging3000/lootprice
+  - text: "Criado com MkDocs e Material for MkDocs"
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/CODEbugging3000/lootprice
+    - icon: fontawesome/solid/envelope
+      link: mailto:g.alvesdearaujo06@gmail.com
