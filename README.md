@@ -19,7 +19,7 @@ LootPrice foi criado com foco em economia, escalabilidade e modularidade. Utiliz
 ✅ Histórico de preços dos jogos  
 ✅ Interface web rápida e responsiva  
 ✅ Agentes independentes para cada loja  
-✅ Orquestração de scraping agendado para lojas sem API pública 
+✅ Orquestração de scraping agendado para lojas sem API pública  
 ✅ Preparado para alertas personalizados (futuro)  
 ✅ Arquitetura escalável com microserviços
 
@@ -171,10 +171,10 @@ A documentação completa do projeto está sendo construída com MkDocs.
 👉 Acesse: /docs
 
 ## 🤝 Contribuindo
-Contribuições são bem-vindas! Veja o CONTRIBUTING.md para saber como ajudar.
+Contribuições são bem-vindas! Veja a página contributing na documentação para saber como ajudar.
 
 ## 🧑‍💻 Autores
-- Gabriel Alves — Idealizador, desenvolvedor principal
+- [Gabriel Alves](https://github.com/CODEbugging3000) — Idealizador, desenvolvedor principal
 
 
 ## 📄 Licença

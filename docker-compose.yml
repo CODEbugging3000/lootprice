@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend-runtime
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-gateway
+    environment:
+      - NODE_ENV=production
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: api-gateway-runtime
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://user:pass@database:5432/lootprice
+    depends_on:
+      - database
+
+  scraper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: scraper-runtime
+    environment:
+      - DATABASE_URL=postgres://user:pass@database:5432/lootprice
+    depends_on:
+      - database
+
+  database:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: lootprice
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  db_data:

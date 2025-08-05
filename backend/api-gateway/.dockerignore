@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+pnpm-debug.log
+@prisma/client
+.env
+.DS_Store
+dist
+build
+coverage
+*.sqlite
+*.db
+*.pyc
+__pycache__
