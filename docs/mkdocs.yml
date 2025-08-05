@@ -35,6 +35,7 @@ theme:
     - navigation.top
     - navigation.indexes
     - navigation.instant
+    - navigation.footer
 
   logo: assets/lootpriceicon.png
   
@@ -48,12 +49,9 @@ nav:
   - Deploy: deploy.md
   - Contributing: contributing.md
 
-footers:
-  - text: "© 2023 CODEbugging3000"
-    link: https://github.com/CODEbugging3000/lootprice
-  - text: "Criado com MkDocs e Material for MkDocs"
 
 extra:
+  copyright: Copyright &copy; 2025 Martin Donath
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/CODEbugging3000/lootprice
