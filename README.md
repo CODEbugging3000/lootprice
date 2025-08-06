@@ -168,7 +168,7 @@ docker-compose up --build
 
 ## 📚 Documentação
 A documentação completa do projeto está sendo construída com MkDocs.
-👉 Acesse: /docs
+👉 Acesse [aqui](https://codebugging3000.github.io/lootprice/)
 
 ## 🤝 Contribuindo
 Contribuições são bem-vindas! Veja a página contributing na documentação para saber como ajudar.

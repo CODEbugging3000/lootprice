@@ -20,10 +20,12 @@ WORKDIR /app/backend
 RUN mkdir -p api-gateway
 # Copy only source files, excluding node_modules and build artifacts
 COPY backend/api-gateway/package.json backend/api-gateway/pnpm-lock.yaml* api-gateway/
-RUN npm install -g pnpm && cd api-gateway && pnpm install
+COPY backend/api-gateway/prisma/ api-gateway/prisma/
+RUN npm install -g pnpm && cd api-gateway && pnpm install && npx prisma generate
 # Use .dockerignore to exclude node_modules and @prisma/client
 COPY backend/api-gateway/ api-gateway/
 # Add similar blocks for other backend services as needed
+RUN cd api-gateway && pnpm build
 
 # ---- SCRAPER (Python) ----
 FROM python:3.11 AS scraper-builder
@@ -51,7 +53,7 @@ COPY --from=backend-builder /app/backend/api-gateway .
 # Ensure pnpm is installed globally in runtime image
 RUN npm install -g pnpm
 EXPOSE 8000
-CMD ["sh", "-c", "pnpm start"]
+CMD ["node", "dist/index.js"]
 
 # Example: Scraper runtime
 FROM python:3.11-slim AS scraper-runtime

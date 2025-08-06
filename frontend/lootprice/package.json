@@ -2,6 +2,12 @@
   "name": "lootprice",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "description": "LootPrice is a web application that provides real-time price tracking and analysis for PC games, helping players make informed decisions about their virtual assets.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CODEbugging3000/lootprice.git"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
