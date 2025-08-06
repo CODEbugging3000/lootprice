@@ -1,8 +1,0 @@
-node_modules
-npm-debug.log
-pnpm-debug.log
-.env
-.DS_Store
-dist
-build
-coverage
