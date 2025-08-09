@@ -8,10 +8,10 @@
 
 # ---- FRONTEND (Next.js) ----
 FROM node:20 AS frontend-builder
-WORKDIR /app/frontend/lootprice
-COPY frontend/lootprice/package.json frontend/lootprice/pnpm-lock.yaml* ./
+WORKDIR /app/frontend/
+COPY frontend/package.json frontend/pnpm-lock.yaml* ./
 RUN npm install -g pnpm && pnpm install
-COPY frontend/lootprice/ ./
+COPY frontend/ ./
 RUN pnpm build
 
 # ---- BACKEND (Node.js) ----
@@ -39,9 +39,9 @@ COPY backend/scraper/ .
 # Example: Frontend runtime
 FROM node:20-alpine AS frontend-runtime
 WORKDIR /app
-COPY --from=frontend-builder /app/frontend/lootprice/.next ./.next
-COPY --from=frontend-builder /app/frontend/lootprice/public ./public
-COPY --from=frontend-builder /app/frontend/lootprice/package.json ./
+COPY --from=frontend-builder /app/frontend/.next ./.next
+COPY --from=frontend-builder /app/frontend/public ./public
+COPY --from=frontend-builder /app/frontend/package.json ./
 RUN npm install -g pnpm && pnpm install --prod
 EXPOSE 3000
 CMD ["pnpm", "start"]
@@ -53,7 +53,7 @@ COPY --from=backend-builder /app/backend/api-gateway .
 # Ensure pnpm is installed globally in runtime image
 RUN npm install -g pnpm
 EXPOSE 8000
-CMD ["node", "dist/index.js"]
+CMD ["sh", "-c", "pnpm prisma migrate deploy && node dist/index.js"]
 
 # Example: Scraper runtime
 FROM python:3.11-slim AS scraper-runtime
