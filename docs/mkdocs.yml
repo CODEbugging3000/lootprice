@@ -48,7 +48,17 @@ nav:
   - Scraping: scraping.md
   - Deploy: deploy.md
   - Contributing: contributing.md
+  - Price Tracker: price_tracker.md
 
+# markdown_extensions:
+#   - pymdownx.superfences:  # For diagrams
+#       custom_fences:
+#         - name: mermaid
+#           class: mermaid
+#           format: !!python/name:pymdownx.superfences.fence_code_format
+
+# extra_css:
+# - stylesheets/extra.css
 
 extra:
   copyright: Copyright &copy; 2025 CODEbugging3000

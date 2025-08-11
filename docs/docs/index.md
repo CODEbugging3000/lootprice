@@ -45,14 +45,15 @@ Cada agente pode:
 
 ---
 
-## 🛠️ **Stack Tecnológica Sugerida**
+## 🛠️ **Stack Tecnológica**
 
-- **Frontend:** React ou Next.js
-- **Backend:** Node.js (Express) ou Python (FastAPI)
-- **Banco de Dados:** PostgreSQL ou MongoDB
+- **Frontend:** Next.js
+- **Backend:** Node.js (Express)
+- **Banco de Dados:** PostgreSQL
 - **Agentes de IA:**
-    - Python + framework multiagente (ex: **JADE** via bridge, **SPADE**, ou até agentes personalizados com asyncio/threading)
-    - Scrapy/Playwright/Requests + BeautifulSoup para scraping
+    - Python + Scraping (requests + BeautifulSoup / Playwright)
+    - **Langchain** para processamento de linguagem natural
+    - Scrapy/Playwright/Requests + BeautifulSoup para scraping + Langchain
 - **Agendamento e Orquestração:** Celery + Redis, Cronjobs, ou Apache Airflow
 - **Hospedagem:** Vercel (frontend), Railway/Render/Heroku ou VPS
 
@@ -60,35 +61,35 @@ Cada agente pode:
 
 ## 🗺️ **Roadmap por Etapas**
 
-### 🔹 Fase 1 – Planejamento (1 semana)
+### 🔹 Fase 1 – Planejamento 
 
-- Definir as lojas que serão integradas
+- Definir as lojas que serão integradas (talvez lojas com +4.7⭐ no Trustpilot)
 - Verificar se possuem API ou se será necessário scraping
 - Mapear os atributos importantes: nome, preço, link, desconto, data
 - Escolher stack inicial e arquitetura (mono repo, microserviços, etc.)
 
-### 🔹 Fase 2 – Protótipo e Backend (2-3 semanas)
+### 🔹 Fase 2 – Protótipo e Backend 
 
 - Criar estrutura de banco de dados
 - Criar um scraper simples para 1 loja (ex: Steam)
 - Desenvolver backend básico com endpoints REST ou GraphQL
 - Criar um agente para realizar scraping e salvar no banco
-- Documentar tudo (Swagger/Postman)
+- Documentar tudo em [API](https://codebugging3000.github.io/lootprice/api)
 
-### 🔹 Fase 3 – Frontend (2-3 semanas)
+### 🔹 Fase 3 – Frontend 
 
 - Tela de busca
 - Tela de resultados com comparação
 - Tela de detalhes do jogo
 - Sistema simples de favoritos/localstorage
 
-### 🔹 Fase 4 – Multiagentes e Escalabilidade (3 semanas)
+### 🔹 Fase 4 – Multiagentes e Escalabilidade 
 
 - Implementar múltiplos agentes (um por loja)
 - Orquestração de tarefas (agendamentos, reações a eventos)
 - Sistema de logs, retries e confiabilidade
 
-### 🔹 Fase 5 – Funcionalidades avançadas (3+ semanas)
+### 🔹 Fase 5 – Funcionalidades avançadas
 
 - Alertas de preço
 - Histórico de variação
@@ -140,7 +141,7 @@ flowchart TD
     C4[Agent - GOG]
   end
 
-  subgraph DB ["Banco de Dados (MongoDB ou PostgreSQL)"]
+  subgraph DB ["Banco de Dados (PostgreSQL)"]
     D1[Tabela Jogos]
     D2[Tabela Preços]
     D3[Tabela Histórico]
@@ -255,9 +256,9 @@ lootprice/
 │   │   ├── main.py
 │   │   └── requirements.txt
 │   │
-│   └── database/                   # Banco de dados (Mongo ou PostgreSQL)
-│       ├── init.sql                # Opcional para PostgreSQL
-│       └── mongo/                  # Scripts se usar Mongo
+│   └── database/                   # Banco de dados (PostgreSQL)
+│       └── init.sql
+│
 │
 └── Dockerfile                      # Dockerfile principal (build multi-stage)
 
@@ -269,26 +270,18 @@ lootprice/
 
 ### 🔹 1. **gateway-api/** (REST API para o frontend)
 
-**Linguagem:** Node.js com Express (ou FastAPI com Python)
+**Linguagem:** Node.js com Express
 
-**Se usar Node.js:**
-
+- `typescript` – superset do JavaScript
+- `jest` – testes
 - `express` – servidor web
 - `cors` – habilitar CORS
 - `axios` ou `node-fetch` – requisições externas
-- `mongoose` ou `pg` – conexão com o banco (Mongo ou Postgres)
+- `pg` – conexão com o banco (Postgres)
 - `dotenv` – variáveis de ambiente
 - `joi` ou `zod` – validação de dados
 - `swagger-ui-express` – documentação de API
-
-**Se usar FastAPI (Python):**
-
-- `fastapi` – API leve e rápida
-- `uvicorn` – servidor ASGI
-- `pydantic` – schemas de dados
-- `sqlalchemy` ou `motor` – ORM ou driver para MongoDB
-- `httpx` – chamadas HTTP
-- `python-dotenv` – configs
+- `prisma` – ORM para PostgreSQL
 
 ---
 
@@ -303,7 +296,7 @@ lootprice/
 - `playwright` – scraping avançado com JS dinâmico
 - `lxml` – parser rápido
 - `pydantic` – validação de dados
-- `pymongo` ou `sqlalchemy` – banco de dados
+- `sqlalchemy` – banco de dados
 - `tenacity` – retries automáticos
 - `loguru` – logs simplificados
 - `schedule` – execução programada simples
@@ -332,15 +325,15 @@ lootprice/
 
 ### 🔹 4. **frontend/** (cliente web)
 
-**Linguagem:** JavaScript/TypeScript (React)
+**Linguagem:** TypeScript (React)
 
 **Frameworks e libs:**
 
-- `react` + `vite` ou `next.js`
+- `next.js`
+- `jest` – testes
 - `axios` ou `fetch` – chamadas à API
 - `tailwindcss` – estilização moderna
 - `react-query` ou `swr` – cache e fetch inteligente
-- `react-router-dom` – rotas (se não usar Next)
 - `zustand` ou `redux` – estado global (opcional)
 - `chart.js` ou `recharts` – histórico de preços
 - `heroicons` ou `phosphor-icons` – ícones
@@ -349,10 +342,9 @@ lootprice/
 
 ### 🔹 5. **database/**
 
-- `PostgreSQL` ou `MongoDB`
-- `prisma` (Node) ou `sqlalchemy` (Python) para ORM
-- `mongodb-atlas` (se cloud) ou `docker` para local
-- `alembic` (Python) ou `knex` (Node) – migrations
+- `PostgreSQL` - banco de dados relacional
+- `prisma` - ORM (Node)
+- `docker` - para local
 
 ---
 
@@ -369,11 +361,11 @@ lootprice/
 
 ---
 
-## ☁️ **Infraestrutura Recomendada**
+## ☁️ **Infraestrutura**
 
 - **Docker** para cada serviço (multi-container)
 - **Docker Compose** para orquestração local
-- **GitHub Actions** ou **GitLab CI** – CI/CD
+- **GitHub Actions** – CI/CD
 - **Railway / Render / Vercel** para deploy rápido
 - **Monitoramento:** Grafana + Prometheus (futuramente)
 
@@ -383,8 +375,8 @@ lootprice/
 
 | Etapa | Status |
 | --- | --- |
-| Estrutura de diretórios criada | ⬜ |
-| Dockerfile + Compose básico | ⬜ |
+| Estrutura de diretórios criada | ✅ |
+| Dockerfile + Compose básico | ✅ |
 | API Gateway funcional | ⬜ |
 | 1 Agente funcional (ex: Steam) | ⬜ |
 | Scheduler inicial com Cron | ⬜ |

@@ -29,7 +29,7 @@ LootPrice foi criado com foco em economia, escalabilidade e modularidade. Utiliz
 
 - **Frontend:** Nextjs + TailwindCSS  
 - **API Gateway:** Node.js (Express) + Prisma
-- **Agentes de Coleta:** Python com Scraping (requests + BeautifulSoup / Playwright)  
+- **Agentes de Coleta:** Python com Scraping (requests + BeautifulSoup / Playwright + Langchain)  
 - **Banco de Dados:** PostgreSQL  
 - **Orquestrador:** Celery com Redis ou Cronjobs  
 - **Infraestrutura:** Docker + Docker Compose
@@ -42,9 +42,6 @@ LootPrice foi criado com foco em economia, escalabilidade e modularidade. Utiliz
 
 ```bash
 lootprice/
-├── .gitignore
-├── docker-compose.yml
-├── README.md
 ├── docs/                         # Documentação MkDocs
 │   ├── mkdocs.yml
 │   └── docs/
@@ -65,7 +62,12 @@ lootprice/
 ├── backend/
 │   ├── api-gateway/              # Orquestrador de requisições
 │   │   ├── src/
+│   │   │   ├── controllers/
+│   │   │   ├── routes/
+│   │   │   ├── prisma/
 │   │   │   └── index.ts
+│   │   ├── prisma/
+│   │   │   └── migrations/
 │   │   ├── package.json
 │   │   └── tsconfig.json
 │   │
@@ -113,12 +115,11 @@ lootprice/
 │   │   ├── main.py
 │   │   └── requirements.txt
 │   │
-│   ├── database/                 # Banco de dados (Mongo ou PostgreSQL)
-│   │   └── init.sql              # Opcional para PostgreSQL
-│   │   
+│   └── database/                 # Banco de dados (PostgreSQL)
+│       └── init.sql              # Script de inicialização
 │
-└── Dockerfile                    # Dockerfile principal (build multi-stage)
-
+├── Dockerfile                    # Dockerfile principal (build multi-stage)
+└── docker-compose.yml            # Configuração dos containers
 
 ```
 
@@ -159,6 +160,7 @@ docker-compose up --build
 # 3. Frontend: http://localhost:3000
 #    API: http://localhost:8000/api
 ```
+
 ## 💡 Próximos Passos
 - [ ] Implementar alertas personalizados
 - [ ] Adicionar novos agentes (GreenManGaming, GOG, etc.)
@@ -171,7 +173,7 @@ A documentação completa do projeto está sendo construída com MkDocs.
 👉 Acesse [aqui](https://codebugging3000.github.io/lootprice/)
 
 ## 🤝 Contribuindo
-Contribuições são bem-vindas! Veja a página contributing na documentação para saber como ajudar.
+Contribuições são bem-vindas! Veja a página [contributing](https://codebugging3000.github.io/lootprice/contributing/) na documentação para saber como ajudar.
 
 ## 🧑‍💻 Autores
 - [Gabriel Alves](https://github.com/CODEbugging3000) — Idealizador, desenvolvedor principal
