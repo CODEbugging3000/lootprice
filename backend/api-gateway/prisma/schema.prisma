@@ -1,14 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-
-
+// This file contains the Prisma schema for the database models
+// Prisma documentation: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-prismaPostgres
 generator client {
   provider = "prisma-client-js"
-  //output   = "../generated/prisma"
 }
 
 datasource db {
@@ -16,9 +9,53 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  googleId   String?  @unique
+  wishlists  Wishlist[]
+}
+
 model Game {
+  id            Int          @id @default(autoincrement())
+  steamAppId    Int?         @unique
+  title         String
+  description   String
+  requiredAge   Int?
+  headerImage   String?
+  releaseDate   DateTime?
+  createdAt     DateTime     @default(now())
+  prices        GamePrice[]
+  wishlists     Wishlist[]
+}
+
+model Store {
+  id      Int         @id @default(autoincrement())
+  name    String      @unique
+  website String
+  prices  GamePrice[]
+}
+
+model GamePrice {
+  id            Int      @id @default(autoincrement())
+  game          Game     @relation(fields: [gameId], references: [id])
+  gameId        Int
+  store         Store    @relation(fields: [storeId], references: [id])
+  storeId       Int
+  price         Float
+  currency      String
+  link          String
+  discount      Int?
+  lastChecked   DateTime @default(now())
+}
+
+model Wishlist {
   id        Int      @id @default(autoincrement())
-  title     String
-  price     Float
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  game      Game     @relation(fields: [gameId], references: [id])
+  gameId    Int
   createdAt DateTime @default(now())
 }
