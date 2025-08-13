@@ -2,17 +2,17 @@
 
 ![smallbrand.png](assets/smallbrand.png)
 
-Breve descrição: Um comparador de preços de jogos para PC com agentes de IA pode ser bastante útil e ainda abrir espaço para aplicar diversos conceitos de sistemas multiagentes, scraping, automação, IA e até gamificação. Vamos estruturar isso melhor:
+Breve descrição: Um comparador de preços de jogos para PC com agentes de IA pode ser bastante útil e ainda abrir espaço para aplicar diversos conceitos de sistemas multiagentes, scraping, automação, IA e até gamificação.
 
 ---
 
-## 🧠 **Resumo da Ideia**
+## 🧠 **Detalhes do projeto**
 
 Criar uma aplicação web ou desktop onde o usuário pode buscar por um jogo e receber uma comparação de preços entre diversas plataformas confiáveis (como Steam, Epic Games, GOG, Nuuvem, GreenManGaming etc.). O diferencial está no uso de **agentes de IA autônomos** que realizam periodicamente buscas, tratam os dados e alimentam um banco de dados para consulta em tempo real.
 
 ---
 
-## 🔍 **Possíveis Funcionalidades**
+## 🔍 **Funcionalidades**
 
 ### MVP (Produto Viável Mínimo):
 
@@ -38,7 +38,7 @@ Criar uma aplicação web ou desktop onde o usuário pode buscar por um jogo e r
 Cada agente pode:
 
 - Ser responsável por uma loja específica (modularidade)
-- Rodar periodicamente (cron ou sistema reativo)
+- Rodar periodicamente (cron)
 - Usar scraping ou APIs
 - Validar a confiabilidade das informações
 - Tratar promoções (ex: bundle, cupons, %)
